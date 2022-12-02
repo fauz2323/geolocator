@@ -19,5 +19,3 @@ class Maps_pagesPage extends StatelessWidget {
     return Container();
   }
 }
-
-
