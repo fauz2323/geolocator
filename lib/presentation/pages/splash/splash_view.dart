@@ -17,7 +17,7 @@ class SplashPage extends StatelessWidget {
 
   Widget _buildPage(BuildContext context) {
     final cubit = BlocProvider.of<SplashCubit>(context);
-
+    cubit.initial(context);
     return Scaffold(
       backgroundColor: MyColors.mainColor,
     );

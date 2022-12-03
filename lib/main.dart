@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/config/route/route.gr.dart';
 import 'package:geolocator/presentation/pages/pages.dart';
 
 void main() {
@@ -7,13 +8,15 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
+  final appRouter = AppRouter();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: SplashPage(),
+      routerDelegate: appRouter.delegate(),
+      routeInformationParser: appRouter.defaultRouteParser(),
     );
   }
 }
