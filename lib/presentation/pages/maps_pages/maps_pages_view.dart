@@ -31,6 +31,8 @@ class Maps_pagesPage extends StatelessWidget {
                   defaultMarker: MarkerIcon(
                     icon: Icon(
                       Icons.control_point_sharp,
+                      color: Colors.red,
+                      size: 50,
                     ),
                   ),
                 ),

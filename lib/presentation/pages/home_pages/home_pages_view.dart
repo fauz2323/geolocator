@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/config/config.dart';
+import 'package:geolocator/presentation/pages/category_pages/category_pages_view.dart';
 import 'package:geolocator/presentation/pages/maps_pages/maps_pages_view.dart';
 
 import 'home_pages_cubit.dart';
@@ -83,24 +84,32 @@ class Home_pagesPage extends StatelessWidget {
                           borderRadius: BorderRadius.all(
                             Radius.circular(20),
                           ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: MyColors.grren002.withOpacity(0.1),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
+                          child: InkWell(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) => Category_pagesPage()),
                               ),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.list_alt,
-                                  size: 80,
-                                  color: MyColors.mainColor,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: MyColors.grren002.withOpacity(0.1),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
                                 ),
-                                Text("Kategori Faskes")
-                              ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.list_alt,
+                                    size: 80,
+                                    color: MyColors.mainColor,
+                                  ),
+                                  Text("Kategori Faskes")
+                                ],
+                              ),
                             ),
                           ),
                         ),

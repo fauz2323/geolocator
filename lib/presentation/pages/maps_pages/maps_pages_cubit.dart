@@ -18,8 +18,14 @@ class Maps_pagesCubit extends Cubit<Maps_pagesState> {
   }
 
   currentPossition() async {
-    await state.controller.currentLocation();
     await state.controller
         .addMarker(GeoPoint(latitude: 47.4358055, longitude: 8.4737324));
+  }
+
+  @override
+  Future<void> close() {
+    // TODO: implement close
+    state.controller.dispose();
+    return super.close();
   }
 }

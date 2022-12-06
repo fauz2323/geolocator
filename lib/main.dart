@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/config/config.dart';
 import 'package:geolocator/config/route/route.gr.dart';
 import 'package:geolocator/presentation/pages/pages.dart';
 
@@ -14,6 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(
+        color: MyColors.mainColor,
+      )),
       debugShowCheckedModeBanner: false,
       routerDelegate: appRouter.delegate(),
       routeInformationParser: appRouter.defaultRouteParser(),
