@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/config/config.dart';
+import 'package:geolocator/presentation/pages/maps_pages/maps_pages_view.dart';
 
 import 'home_pages_cubit.dart';
 import 'home_pages_state.dart';
@@ -108,24 +109,32 @@ class Home_pagesPage extends StatelessWidget {
                           borderRadius: BorderRadius.all(
                             Radius.circular(20),
                           ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: MyColors.grren002.withOpacity(0.1),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
+                          child: InkWell(
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: ((context) => Maps_pagesPage()),
                               ),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.map_sharp,
-                                  size: 80,
-                                  color: MyColors.mainColor,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: MyColors.grren002.withOpacity(0.1),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
                                 ),
-                                Text("Lokasi Faskes")
-                              ],
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.map_sharp,
+                                    size: 80,
+                                    color: MyColors.mainColor,
+                                  ),
+                                  Text("Lokasi Faskes")
+                                ],
+                              ),
                             ),
                           ),
                         ),
