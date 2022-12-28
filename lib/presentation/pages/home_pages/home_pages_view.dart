@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/config/config.dart';
 import 'package:geolocator/presentation/pages/category_pages/category_pages_view.dart';
+import 'package:geolocator/presentation/pages/faskes_pages/faskes_pages_view.dart';
 import 'package:geolocator/presentation/pages/maps_pages/maps_pages_view.dart';
 
 import 'home_pages_cubit.dart';
@@ -53,125 +54,40 @@ class Home_pagesPage extends StatelessWidget {
                       mainAxisSpacing: 20,
                       crossAxisSpacing: 20,
                       children: [
-                        Material(
-                          elevation: 8,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: MyColors.grren002.withOpacity(0.1),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.local_hospital_outlined,
-                                  size: 80,
-                                  color: MyColors.mainColor,
-                                ),
-                                Text("Fasilitas Kesehatan")
-                              ],
+                        ItemListHome(
+                          func: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => Faskes_pagesPage()),
                             ),
                           ),
+                          tittle: "Fasilitasn Kesehatan",
+                          icon: Icons.local_hospital_outlined,
                         ),
-                        Material(
-                          elevation: 8,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                          child: InkWell(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: ((context) => Category_pagesPage()),
-                              ),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: MyColors.grren002.withOpacity(0.1),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(20),
-                                ),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.list_alt,
-                                    size: 80,
-                                    color: MyColors.mainColor,
-                                  ),
-                                  Text("Kategori Faskes")
-                                ],
-                              ),
+                        ItemListHome(
+                          func: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => Category_pagesPage()),
                             ),
                           ),
+                          tittle: "Kategori Faskes",
+                          icon: Icons.list_alt,
                         ),
-                        Material(
-                          elevation: 8,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                          child: InkWell(
-                            onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: ((context) => Maps_pagesPage()),
-                              ),
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: MyColors.grren002.withOpacity(0.1),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(20),
-                                ),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.map_sharp,
-                                    size: 80,
-                                    color: MyColors.mainColor,
-                                  ),
-                                  Text("Lokasi Faskes")
-                                ],
-                              ),
+                        ItemListHome(
+                          func: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => Maps_pagesPage()),
                             ),
                           ),
+                          tittle: "Lokasi Faskes",
+                          icon: Icons.map_sharp,
                         ),
-                        Material(
-                          elevation: 8,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: MyColors.grren002.withOpacity(0.1),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.tips_and_updates_sharp,
-                                  size: 80,
-                                  color: MyColors.mainColor,
-                                ),
-                                Text("Tentang Aplikasi")
-                              ],
-                            ),
-                          ),
+                        ItemListHome(
+                          func: () {},
+                          tittle: "Tentang Aplikasi",
+                          icon: Icons.tips_and_updates_sharp,
                         ),
                       ],
                     ),
@@ -181,6 +97,54 @@ class Home_pagesPage extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class ItemListHome extends StatelessWidget {
+  const ItemListHome({
+    Key? key,
+    required this.func,
+    required this.icon,
+    required this.tittle,
+  }) : super(key: key);
+  final VoidCallback func;
+  final IconData icon;
+  final String tittle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      elevation: 8,
+      borderRadius: BorderRadius.all(
+        Radius.circular(20),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+        onTap: func,
+        child: Container(
+          decoration: BoxDecoration(
+            color: MyColors.grren002.withOpacity(0.1),
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                icon,
+                size: 80,
+                color: MyColors.mainColor,
+              ),
+              Text(tittle)
+            ],
+          ),
+        ),
       ),
     );
   }

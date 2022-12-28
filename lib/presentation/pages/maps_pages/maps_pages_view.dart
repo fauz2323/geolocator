@@ -20,36 +20,38 @@ class Maps_pagesPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton:
           FloatingActionButton(onPressed: () => cubit.currentPossition()),
-      body: cubit.state.isLoading
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : Container(
-              child: OSMFlutter(
-                controller: cubit.state.controller,
-                markerOption: MarkerOption(
-                  defaultMarker: MarkerIcon(
-                    icon: Icon(
-                      Icons.control_point_sharp,
-                      color: Colors.red,
-                      size: 50,
+      body: BlocBuilder<Maps_pagesCubit, Maps_pagesState>(
+        builder: (context, state) => cubit.state.isLoading
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : Container(
+                child: OSMFlutter(
+                  controller: cubit.state.controller,
+                  markerOption: MarkerOption(
+                    defaultMarker: MarkerIcon(
+                      icon: Icon(
+                        Icons.control_point_sharp,
+                        color: Colors.red,
+                        size: 50,
+                      ),
                     ),
                   ),
-                ),
-                userLocationMarker: UserLocationMaker(
-                  personMarker: MarkerIcon(
-                    icon: Icon(
-                      Icons.person,
+                  userLocationMarker: UserLocationMaker(
+                    personMarker: MarkerIcon(
+                      icon: Icon(
+                        Icons.person,
+                      ),
                     ),
-                  ),
-                  directionArrowMarker: MarkerIcon(
-                    icon: Icon(
-                      Icons.control_point_sharp,
+                    directionArrowMarker: MarkerIcon(
+                      icon: Icon(
+                        Icons.control_point_sharp,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
+      ),
     );
   }
 }

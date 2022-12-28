@@ -15,11 +15,11 @@ class Maps_pagesCubit extends Cubit<Maps_pagesState> {
         )
         ..isLoading = false,
     );
+    print("object");
   }
 
   currentPossition() async {
-    await state.controller
-        .addMarker(GeoPoint(latitude: 47.4358055, longitude: 8.4737324));
+    await state.controller.currentLocation();
   }
 
   @override
