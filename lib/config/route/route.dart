@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:geolocator/presentation/pages/pages.dart';
+import 'package:geolocator_fe/presentation/pages/pages.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',

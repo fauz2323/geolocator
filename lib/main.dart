@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/config/config.dart';
-import 'package:geolocator/config/route/route.gr.dart';
-import 'package:geolocator/presentation/pages/pages.dart';
+import 'package:geolocator_fe/config/config.dart';
+import 'package:geolocator_fe/config/route/route.gr.dart';
+import 'package:geolocator_fe/presentation/pages/pages.dart';
 
 void main() {
   runApp(MyApp());

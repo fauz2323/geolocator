@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 
 import 'maps_pages_cubit.dart';
 import 'maps_pages_state.dart';
@@ -26,29 +27,17 @@ class Maps_pagesPage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               )
             : Container(
-                child: OSMFlutter(
-                  controller: cubit.state.controller,
-                  markerOption: MarkerOption(
-                    defaultMarker: MarkerIcon(
-                      icon: Icon(
-                        Icons.control_point_sharp,
-                        color: Colors.red,
-                        size: 50,
-                      ),
-                    ),
+                child: FlutterMap(
+                  options: MapOptions(
+                    center: LatLng(51.509364, -0.128928),
+                    zoom: 9.2,
                   ),
-                  userLocationMarker: UserLocationMaker(
-                    personMarker: MarkerIcon(
-                      icon: Icon(
-                        Icons.person,
-                      ),
+                  mapController: cubit.state.mapController,
+                  children: [
+                    MarkerLayer(
+                      markers: cubit.state.marker,
                     ),
-                    directionArrowMarker: MarkerIcon(
-                      icon: Icon(
-                        Icons.control_point_sharp,
-                      ),
-                    ),
-                  ),
+                  ],
                 ),
               ),
       ),

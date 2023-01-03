@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/config/config.dart';
-import 'package:geolocator/presentation/pages/category_pages/category_pages_view.dart';
-import 'package:geolocator/presentation/pages/faskes_pages/faskes_pages_view.dart';
-import 'package:geolocator/presentation/pages/maps_pages/maps_pages_view.dart';
+import 'package:geolocator_fe/config/config.dart';
+import 'package:geolocator_fe/presentation/pages/category_pages/category_pages_view.dart';
+import 'package:geolocator_fe/presentation/pages/faskes_pages/faskes_pages_view.dart';
+import 'package:geolocator_fe/presentation/pages/maps_pages/maps_pages_view.dart';
 
 import 'home_pages_cubit.dart';
 import 'home_pages_state.dart';

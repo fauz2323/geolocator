@@ -1,4 +1,4 @@
-import 'package:geolocator/data/model/category_model.dart';
+import 'package:geolocator_fe/data/model/category_model.dart';
 
 class Category_pagesState {
   late CategoryModel categoryModel;

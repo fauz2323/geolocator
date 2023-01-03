@@ -4,6 +4,7 @@ class Api {
   static Uri allCategory = Uri.parse("$baseUrl/api/all-category");
   static Uri allFaskes = Uri.parse("$baseUrl/api/all-faskes");
   static Uri byCategoru = Uri.parse("$baseUrl/api/faskes-by-category");
+  static Uri coordinate = Uri.parse("$baseUrl/api/coordinate");
 
   getHeaderGet(var token) {
     Map<String, String> data = {

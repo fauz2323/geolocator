@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
-import 'package:geolocator/config/service/faskes_services.dart';
-import 'package:geolocator/data/model/faskes_model.dart';
+import 'package:geolocator_fe/config/service/faskes_services.dart';
+import 'package:geolocator_fe/data/model/faskes_model.dart';
 
 import 'faskes_pages_state.dart';
 

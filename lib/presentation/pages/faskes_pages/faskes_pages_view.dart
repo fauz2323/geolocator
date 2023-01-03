@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator/config/config.dart';
-import 'package:geolocator/presentation/pages/detail_pages/detail_pages_view.dart';
+import 'package:geolocator_fe/config/config.dart';
+import 'package:geolocator_fe/presentation/pages/detail_pages/detail_pages_view.dart';
 
 import 'faskes_pages_cubit.dart';
 import 'faskes_pages_state.dart';
