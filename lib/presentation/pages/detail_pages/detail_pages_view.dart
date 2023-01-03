@@ -53,6 +53,65 @@ class Detail_pagesPage extends StatelessWidget {
                   color: Colors.black,
                   height: 20,
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        child: Text("Kota : "),
+                        width: width(context) * 40 / 100,
+                      ),
+                      VerticalDivider(
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        child: Text("Provinsi : "),
+                        width: width(context) * 40 / 100,
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(
+                  color: Colors.black,
+                  height: 20,
+                ),
+                Center(child: Text('Alamat Lengkap :')),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
+                  child: Text(
+                    "Jl. Raya Cibadak No. 1, Cibadak, Kec. Cibadak, Kabupaten Bandung Barat, Jawa Barat 40552",
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ),
+                Center(
+                  child: Container(
+                    width: width(context) * 90 / 100,
+                    height: height(context) * 30 / 100,
+                    margin: EdgeInsets.only(top: 20),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                    ),
+                    child: Center(
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text('Lihat Peta'),
+                      ),
+                    ),
+                  ),
+                ),
+                //expanded button
+                Expanded(
+                    child: Center(
+                  child: SizedBox(
+                    height: 40,
+                    width: width(context) * 90 / 100,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text('Lihat Peta'),
+                    ),
+                  ),
+                ))
               ],
             ),
             SafeArea(

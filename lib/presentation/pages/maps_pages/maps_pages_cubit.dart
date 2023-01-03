@@ -20,6 +20,7 @@ class Maps_pagesCubit extends Cubit<Maps_pagesState> {
 
     var getCoordinate = await MapsService.getData();
     var jsonData = jsonDecode(getCoordinate.body);
+    print([position.latitude, position.longitude, getCoordinate.body]);
 
     emit(
       state.clone()
@@ -29,35 +30,29 @@ class Maps_pagesCubit extends Cubit<Maps_pagesState> {
     );
 
     print("object");
-    for (var element in state.coordinateModel.coordinate) {
-      emit(
-        state.clone()
-          ..marker.add(
-            Marker(
-              point: LatLng(
-                double.parse(element.latitude),
-                double.parse(element.longitude),
-              ),
-              builder: (context) => Container(
-                child: IconButton(
-                  onPressed: () {
-                    print(element.namaFaskes);
-                  },
-                  icon: Icon(Icons.location_on),
-                  color: Colors.red,
-                ),
-              ),
-            ),
-          ),
-      );
-    }
+    // for (var element in state.coordinateModel.coordinate) {
+    //   emit(
+    //     state.clone()
+    //       ..marker.add(
+    //         Marker(
+    //           point: LatLng(
+    //             double.parse(element.latitude),
+    //             double.parse(element.longitude),
+    //           ),
+    //           builder: (context) => Container(
+    //             child: IconButton(
+    //               onPressed: () {
+    //                 print(element.namaFaskes);
+    //               },
+    //               icon: Icon(Icons.location_on),
+    //               color: Colors.red,
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //   );
+    // }
   }
 
   currentPossition() async {}
-
-  @override
-  Future<void> close() {
-    // TODO: implement close
-    return super.close();
-  }
 }

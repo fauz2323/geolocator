@@ -22,24 +22,15 @@ class Maps_pagesPage extends StatelessWidget {
       floatingActionButton:
           FloatingActionButton(onPressed: () => cubit.currentPossition()),
       body: BlocBuilder<Maps_pagesCubit, Maps_pagesState>(
-        builder: (context, state) => cubit.state.isLoading
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : Container(
-                child: FlutterMap(
-                  options: MapOptions(
-                    center: LatLng(51.509364, -0.128928),
-                    zoom: 9.2,
-                  ),
-                  mapController: cubit.state.mapController,
-                  children: [
-                    MarkerLayer(
-                      markers: cubit.state.marker,
-                    ),
-                  ],
-                ),
-              ),
+        builder: (context, state) => Container(
+          child: FlutterMap(
+            options: MapOptions(
+              center: LatLng(51.509364, -0.128928),
+              zoom: 9.2,
+            ),
+            mapController: cubit.state.mapController,
+          ),
+        ),
       ),
     );
   }
