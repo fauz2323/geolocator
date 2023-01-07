@@ -9,9 +9,11 @@ class Maps_pagesState {
   late LatLng currentPossition;
   List<Marker> marker = [];
   MapController mapController = MapController();
+  int number = 1;
+  String namaFaskes = "";
+  String alamatFaskes = "";
 
   Maps_pagesState init() {
-    print('mulai');
     return Maps_pagesState();
   }
 
@@ -19,3 +21,15 @@ class Maps_pagesState {
     return Maps_pagesState();
   }
 }
+
+class MapsStateInitial extends Maps_pagesState {}
+
+class MapsStateLoading extends Maps_pagesState {}
+
+class MapsStateFinishedLoading extends Maps_pagesState {
+  MapsStateFinishedLoading() {
+    isLoading = false;
+  }
+}
+
+class MapsStateError extends Maps_pagesState {}
