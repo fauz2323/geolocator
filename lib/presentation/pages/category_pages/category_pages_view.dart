@@ -19,24 +19,12 @@ class Category_pagesPage extends StatelessWidget {
   Widget _buildPage(BuildContext context) {
     final cubit = BlocProvider.of<CategoryPageCubit>(context);
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // cubit.increment();
-          // context.read<CategoryPageCubit>().increment();
-        },
-      ),
       appBar: AppBar(
         title: Text("Categori Faskes"),
         elevation: 0,
       ),
       body: Column(
         children: [
-          BlocBuilder<CategoryPageCubit, CategoryPageState>(
-              builder: (context, state) {
-            return cubit.namaCategory == null
-                ? SizedBox()
-                : Text(cubit.namaCategory!);
-          }),
           BlocBuilder<CategoryPageCubit, CategoryPageState>(
               builder: (context, state) {
             if (state is CategoryPageLoading) {
@@ -47,15 +35,14 @@ class Category_pagesPage extends StatelessWidget {
               return Center(
                 child: Column(
                   children: [
+                    Text(state.recentLocation),
                     Column(
                       children: state.categoryModel.data
                           .map(
                             (e) => ListCategory(
                                 func: () {
                                   //ketika di klik akan masuk ke variabel namaCategory
-                                  context
-                                      .read<CategoryPageCubit>()
-                                      .increment(e.kodeKategori);
+                                  cubit.increment(e.namaKategory);
                                 },
                                 tittle: e.namaKategory),
                           )

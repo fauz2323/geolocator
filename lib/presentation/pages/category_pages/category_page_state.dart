@@ -8,10 +8,10 @@ class CategoryPageLoading extends CategoryPageInitial {}
 
 class CategoryFinishedLoading extends CategoryPageInitial {
   final CategoryModel categoryModel;
-  // final int number;
-  // final String recentLocation;
+  final int number;
+  final String recentLocation;
 
-  CategoryFinishedLoading(this.categoryModel);
+  CategoryFinishedLoading(this.categoryModel, this.number, this.recentLocation);
 }
 
 class CategoryName extends CategoryPageInitial {
