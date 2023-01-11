@@ -11,6 +11,9 @@
 migrate_working_dir/
 
 # IntelliJ related
+lib/config/service/api.dart
+
+# IntelliJ related
 *.iml
 *.ipr
 *.iws
