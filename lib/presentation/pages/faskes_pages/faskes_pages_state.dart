@@ -1,14 +1,13 @@
 import '../../../data/model/faskes_model.dart';
 
-class Faskes_pagesState {
-  bool isLoading = true;
-  late FaskesModel faskesModel;
+class Faskes_pagesState {}
 
-  Faskes_pagesState init() {
-    return Faskes_pagesState();
-  }
+class Faskes_Initial extends Faskes_pagesState {}
 
-  Faskes_pagesState clone() {
-    return Faskes_pagesState();
-  }
+class Faskes_Loading extends Faskes_pagesState {}
+
+class Faskes_FinishedLoading extends Faskes_pagesState {
+  final FaskesModel faskesModel;
+
+  Faskes_FinishedLoading({required this.faskesModel});
 }

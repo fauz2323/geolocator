@@ -1,10 +1,11 @@
 class Api {
-  static String baseUrl = "http://192.168.5.27:8000";
+  static String baseUrl = "http://192.168.43.71:8000";
 
   static Uri allCategory = Uri.parse("$baseUrl/api/all-category");
   static Uri allFaskes = Uri.parse("$baseUrl/api/all-faskes");
   static Uri byCategoru = Uri.parse("$baseUrl/api/faskes-by-category");
   static Uri coordinate = Uri.parse("$baseUrl/api/coordinate");
+  static Uri faskesById = Uri.parse("$baseUrl/api/faskes-by-id");
 
   getHeaderGet(var token) {
     Map<String, String> data = {

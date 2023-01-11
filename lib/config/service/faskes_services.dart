@@ -28,4 +28,21 @@ class FaskesService {
       throw Exception(e.toString());
     }
   }
+
+  static Future<http.Response> getFaskesById(int id) async {
+    try {
+      var detail = await http
+          .get(
+            Uri.parse('${Api.faskesById}/$id'),
+          )
+          .timeout(
+            const Duration(seconds: 10),
+            onTimeout: () => http.Response('TimeOut', 500),
+          );
+      return detail;
+    } catch (e) {
+      print(e.toString());
+      throw Exception(e.toString());
+    }
+  }
 }

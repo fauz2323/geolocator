@@ -10,45 +10,53 @@ class Faskes_pagesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => Faskes_pagesCubit(),
+      create: (BuildContext context) => Faskes_pagesCubit()..initial(),
       child: Builder(builder: (context) => _buildPage(context)),
     );
   }
 
   Widget _buildPage(BuildContext context) {
     final cubit = BlocProvider.of<Faskes_pagesCubit>(context);
-    cubit.initial();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: Text("Fasilitas Kesehatan"),
       ),
       body: BlocBuilder<Faskes_pagesCubit, Faskes_pagesState>(
-        builder: (context, state) => cubit.state.isLoading
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : ListView(
-                children: cubit.state.faskesModel.allFaskes
-                    .map(
-                      (e) => ListFaskes(
-                        func: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Detail_pagesPage(),
-                            settings: RouteSettings(arguments: e.id),
-                          ),
+          builder: (context, state) {
+        if (state is Faskes_Loading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is Faskes_FinishedLoading) {
+          return ListView(
+            children: state.faskesModel.allFaskes
+                .map(
+                  (e) => ListFaskes(
+                    func: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Detail_pagesPage(
+                          id: e.id,
                         ),
-                        image:
-                            'https://cdn.antaranews.com/cache/800x533/2022/06/21/FOTO-Advent.png',
-                        id: e.id,
-                        tittle: e.namaFaskes,
-                        alamat: e.alamat,
+                        settings: RouteSettings(arguments: e.id),
                       ),
-                    )
-                    .toList(),
-              ),
-      ),
+                    ),
+                    image:
+                        'https://cdn.antaranews.com/cache/800x533/2022/06/21/FOTO-Advent.png',
+                    id: e.id,
+                    tittle: e.namaFaskes,
+                    alamat: e.alamat,
+                  ),
+                )
+                .toList(),
+          );
+        } else {
+          return Center(
+            child: Text("Data Kosong"),
+          );
+        }
+      }),
     );
   }
 }

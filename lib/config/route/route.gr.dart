@@ -55,7 +55,9 @@ class AppRouter extends _i2.RootStackRouter {
     Detail_pagesRoute.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i1.Detail_pagesPage(),
+        child: _i1.Detail_pagesPage(
+          id: 1,
+        ),
       );
     },
     Faskes_pagesRoute.name: (routeData) {
