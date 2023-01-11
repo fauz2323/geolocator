@@ -40,7 +40,11 @@ class Home_pagesPage extends StatelessWidget {
               children: [
                 Container(
                   height: height(context) * 32 / 100,
-                  child: Text("Header"),
+                  child: Image.asset(
+                    'asset/img/logo.png',
+                    width: 200,
+                    height: 200,
+                  ),
                 ),
                 SizedBox(
                   height: 30,

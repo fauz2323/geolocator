@@ -20,6 +20,29 @@ class SplashPage extends StatelessWidget {
     cubit.initial(context);
     return Scaffold(
       backgroundColor: MyColors.mainColor,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'asset/img/logo.png',
+              width: 200,
+              height: 200,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Geolocator',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
