@@ -16,6 +16,17 @@ class FaskesService {
     }
   }
 
+  //get category by id
+  static Future getCategoryById(int id) async {
+    try {
+      var dataCategory = await http.get(Uri.parse('${Api.byCategoru}/$id'));
+      return dataCategory;
+    } catch (e) {
+      print(e.toString());
+      throw Exception(e.toString());
+    }
+  }
+
   static Future getFaskes<Response>() async {
     try {
       var dataFaskes = await http.get(Api.allFaskes).timeout(

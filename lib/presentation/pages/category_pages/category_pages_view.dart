@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator_fe/presentation/pages/category_pages/category_page_cubit.dart';
 import 'package:geolocator_fe/presentation/pages/category_pages/component/list_category.dart';
+import 'package:geolocator_fe/presentation/pages/faskes_pages_id/faskes_pages_cubit_id.dart';
+
+import '../faskes_pages/faskes_pages_view.dart';
+import '../faskes_pages_id/faskes_pages_view_id.dart';
 
 class Category_pagesPage extends StatelessWidget {
   Category_pagesPage({super.key});
@@ -42,7 +46,14 @@ class Category_pagesPage extends StatelessWidget {
                             (e) => ListCategory(
                                 func: () {
                                   //ketika di klik akan masuk ke variabel namaCategory
-                                  cubit.increment(e.namaKategory);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            Faskes_pagesPage_id(
+                                          id: e.id,
+                                        ),
+                                      ));
                                 },
                                 tittle: e.namaKategory),
                           )

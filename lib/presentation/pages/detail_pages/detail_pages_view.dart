@@ -61,7 +61,7 @@ class Detail_pagesPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 30, top: 10),
                     child: Text(
-                      "Nama RS",
+                      state.detailFaskesModel.faskes?.namaFaskes ?? '-',
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
                     ),
@@ -77,8 +77,8 @@ class Detail_pagesPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                          child: Text("Kota : Jakarta"),
-                          width: width(context) * 30 / 100,
+                          child: Text("Kota : Kebayoran Lama"),
+                          width: width(context) * 45 / 100,
                         ),
                         VerticalDivider(
                           color: Colors.black,
@@ -87,6 +87,16 @@ class Detail_pagesPage extends StatelessWidget {
                           child: Text("Provinsi : Jakarta"),
                           width: width(context) * 30 / 100,
                         ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("No. Telepon"),
+                        Text(state.detailFaskesModel.faskes!.telpon.toString()),
                       ],
                     ),
                   ),
