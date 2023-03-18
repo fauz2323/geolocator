@@ -59,32 +59,17 @@ class Home_pagesPage extends StatelessWidget {
                       crossAxisSpacing: 20,
                       children: [
                         ItemListHome(
-                          func: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => Faskes_pagesPage()),
-                            ),
-                          ),
+                          func: () => Navigator.pushNamed(context, 'faskes'),
                           tittle: "Fasilitasn Kesehatan",
                           icon: Icons.local_hospital_outlined,
                         ),
                         ItemListHome(
-                          func: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => Category_pagesPage()),
-                            ),
-                          ),
+                          func: () => Navigator.pushNamed(context, 'category'),
                           tittle: "Kategori Faskes",
                           icon: Icons.list_alt,
                         ),
                         ItemListHome(
-                          func: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: ((context) => Maps_pagesPage()),
-                            ),
-                          ),
+                          func: () => Navigator.pushNamed(context, 'maps'),
                           tittle: "Lokasi Faskes",
                           icon: Icons.map_sharp,
                         ),

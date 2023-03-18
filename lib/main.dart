@@ -2,8 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator_fe/config/config.dart';
-import 'package:geolocator_fe/config/route/route.gr.dart';
 import 'package:geolocator_fe/presentation/pages/pages.dart';
+
+import 'helper/route.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -21,19 +22,16 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-  final appRouter = AppRouter();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: ThemeData(
-          appBarTheme: AppBarTheme(
-        color: MyColors.mainColor,
-      )),
+    return MaterialApp(
+      title: 'GEOLOCATOR',
       debugShowCheckedModeBanner: false,
-      routerDelegate: appRouter.delegate(),
-      routeInformationParser: appRouter.defaultRouteParser(),
+      theme: ThemeData(),
+      initialRoute: '/',
+      routes: RoutesList.routes,
     );
   }
 }

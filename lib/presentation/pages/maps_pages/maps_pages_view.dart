@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator_fe/config/config.dart';
+import 'package:geolocator_fe/presentation/pages/maps_pages/cubit/maps_cubit.dart';
 import 'package:latlong2/latlong.dart';
-
-import 'maps_pages_cubit.dart';
-import 'maps_pages_state.dart';
 
 class Maps_pagesPage extends StatelessWidget {
   const Maps_pagesPage({super.key});
@@ -13,13 +11,13 @@ class Maps_pagesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => Maps_pagesCubit()..initial(),
+      create: (BuildContext context) => MapsCubit()..initial(),
       child: Builder(builder: (context) => _buildPage(context)),
     );
   }
 
   Widget _buildPage(BuildContext context) {
-    final cubit = BlocProvider.of<Maps_pagesCubit>(context, listen: false);
+    final cubit = BlocProvider.of<MapsCubit>(context, listen: false);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -33,27 +31,28 @@ class Maps_pagesPage extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                cubit.currentPossition();
+                cubit.currentPossitionSet();
               },
               icon: Icon(Icons.location_searching),
             ),
           ],
         ),
-        body: BlocBuilder<Maps_pagesCubit, Maps_pagesState>(
-            builder: (context, state) {
-          if (state is MapsStateLoading) {
-            return Center(
+        body: BlocBuilder<MapsCubit, MapsState>(builder: (context, state) {
+          return state.maybeWhen(
+            orElse: () => Container(),
+            loading: () => Center(
               child: CircularProgressIndicator(),
-            );
-          } else if (state is MapsStateFinishedLoading) {
-            return Column(children: [
+            ),
+            loaded: (coordinateModel, currentPossition, mapController,
+                    detailMaps) =>
+                Column(children: [
               Expanded(
                 child: FlutterMap(
                   options: MapOptions(
-                    center: state.currentPossition,
+                    center: currentPossition,
                     zoom: 14.2,
                   ),
-                  mapController: state.mapController,
+                  mapController: mapController,
                   children: [
                     TileLayer(
                       urlTemplate:
@@ -63,8 +62,8 @@ class Maps_pagesPage extends StatelessWidget {
                     MarkerLayer(markers: [
                       Marker(
                         point: LatLng(
-                          state.currentPossition.latitude,
-                          state.currentPossition.longitude,
+                          currentPossition.latitude,
+                          currentPossition.longitude,
                         ),
                         builder: (context) {
                           return Icon(
@@ -75,7 +74,7 @@ class Maps_pagesPage extends StatelessWidget {
                       ),
                     ]),
                     MarkerLayer(
-                      markers: state.coordinateModel.coordinate
+                      markers: coordinateModel.coordinate
                           .map(
                             (e) => Marker(
                               point: LatLng(
@@ -121,7 +120,7 @@ class Maps_pagesPage extends StatelessWidget {
                       children: [
                         Text("Nama Faskes"),
                         Text(
-                          state.detailMaps.namaFaskes,
+                          detailMaps.namaFaskes,
                           style: TextStyle(fontSize: 15),
                         ),
                       ],
@@ -130,20 +129,20 @@ class Maps_pagesPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Latitude"),
-                        Text(state.detailMaps.latitude),
+                        Text(detailMaps.latitude),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("Longitude"),
-                        Text(state.detailMaps.longitude),
+                        Text(detailMaps.longitude),
                       ],
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    state.detailMaps.latitude != ""
+                    detailMaps.latitude != ""
                         ? SizedBox(
                             width: width(context) * 90 / 100,
                             child: ElevatedButton(
@@ -151,8 +150,8 @@ class Maps_pagesPage extends StatelessWidget {
                                 backgroundColor: MyColors.mainColor,
                               ),
                               onPressed: () {
-                                cubit.openMaps(state.detailMaps.latitude,
-                                    state.detailMaps.longitude);
+                                cubit.openMaps(
+                                    detailMaps.latitude, detailMaps.longitude);
                               },
                               child: Text("Open Maps"),
                             ),
@@ -161,12 +160,11 @@ class Maps_pagesPage extends StatelessWidget {
                   ],
                 ),
               ),
-            ]);
-          } else {
-            return Center(
-              child: Text("Error"),
-            );
-          }
+            ]),
+            error: (error) => Center(
+              child: Text(error),
+            ),
+          );
         }),
       ),
     );

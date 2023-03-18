@@ -1,5 +1,5 @@
 class Api {
-  static String baseUrl = "http://192.168.43.71:8000";
+  static String baseUrl = "http://192.168.43.153:8000";
 
   static Uri allCategory = Uri.parse("$baseUrl/api/all-category");
   static Uri allFaskes = Uri.parse("$baseUrl/api/all-faskes");

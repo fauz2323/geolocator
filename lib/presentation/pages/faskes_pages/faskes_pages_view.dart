@@ -2,45 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator_fe/config/config.dart';
 import 'package:geolocator_fe/presentation/pages/detail_pages/detail_pages_view.dart';
+import 'package:geolocator_fe/presentation/pages/faskes_pages/cubit/faskes_cubit.dart';
 
-import 'faskes_pages_cubit.dart';
-import 'faskes_pages_state.dart';
+import '../../../data/model/detail_argument.dart';
 
 class Faskes_pagesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => Faskes_pagesCubit()..initial(),
+      create: (BuildContext context) => FaskesCubit()..initial(),
       child: Builder(builder: (context) => _buildPage(context)),
     );
   }
 
   Widget _buildPage(BuildContext context) {
-    final cubit = BlocProvider.of<Faskes_pagesCubit>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: MyColors.grren001,
         elevation: 0,
-        title: Text("Fasilitas Kesehatan"),
+        title: Text(
+          "Fasilitas Kesehatan",
+          style: TextStyle(color: Colors.black),
+        ),
       ),
-      body: BlocBuilder<Faskes_pagesCubit, Faskes_pagesState>(
-          builder: (context, state) {
-        if (state is Faskes_Loading) {
-          return Center(
+      body: BlocBuilder<FaskesCubit, FaskesState>(builder: (context, state) {
+        return state.maybeWhen(
+          orElse: () => Container(),
+          loading: () => Center(
             child: CircularProgressIndicator(),
-          );
-        } else if (state is Faskes_FinishedLoading) {
-          return ListView(
-            children: state.faskesModel.allFaskes
+          ),
+          loaded: (faskesModel) => ListView(
+            children: faskesModel.allFaskes
                 .map(
                   (e) => ListFaskes(
-                    func: () => Navigator.push(
+                    func: () => Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => Detail_pagesPage(
-                          id: e.id,
-                        ),
-                        settings: RouteSettings(arguments: e.id),
-                      ),
+                      'detail',
+                      arguments: DetailArgument(e.id.toString(), e.namaFaskes),
                     ),
                     image:
                         'https://cdn.antaranews.com/cache/800x533/2022/06/21/FOTO-Advent.png',
@@ -50,12 +48,11 @@ class Faskes_pagesPage extends StatelessWidget {
                   ),
                 )
                 .toList(),
-          );
-        } else {
-          return Center(
-            child: Text("Data Kosong"),
-          );
-        }
+          ),
+          error: (error) => Center(
+            child: Text(error),
+          ),
+        );
       }),
     );
   }

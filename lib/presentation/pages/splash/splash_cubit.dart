@@ -8,8 +8,7 @@ class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(SplashState().init());
 
   initial(BuildContext context) async {
-    var routers = context.router;
     await Future.delayed(Duration(seconds: 4));
-    return routers.replaceNamed('/home');
+    return Navigator.pushReplacementNamed(context, 'home');
   }
 }

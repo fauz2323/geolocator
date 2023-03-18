@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geolocator_fe/presentation/pages/category_pages/category_page_cubit.dart';
+import 'package:geolocator_fe/data/model/faskes_category_argument.dart';
 import 'package:geolocator_fe/presentation/pages/category_pages/component/list_category.dart';
-import 'package:geolocator_fe/presentation/pages/faskes_pages_id/faskes_pages_cubit_id.dart';
+import 'package:geolocator_fe/presentation/pages/category_pages/cubit/category_cubit.dart';
 
 import '../faskes_pages/faskes_pages_view.dart';
 import '../faskes_pages_id/faskes_pages_view_id.dart';
@@ -10,18 +10,15 @@ import '../faskes_pages_id/faskes_pages_view_id.dart';
 class Category_pagesPage extends StatelessWidget {
   Category_pagesPage({super.key});
 
-  final CategoryPageCubit cubit = CategoryPageCubit();
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => CategoryPageCubit()..initial(),
+      create: (BuildContext context) => CategoryCubit()..initial(),
       child: Builder(builder: (context) => _buildPage(context)),
     );
   }
 
   Widget _buildPage(BuildContext context) {
-    final cubit = BlocProvider.of<CategoryPageCubit>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Categori Faskes"),
@@ -29,31 +26,24 @@ class Category_pagesPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          BlocBuilder<CategoryPageCubit, CategoryPageState>(
-              builder: (context, state) {
-            if (state is CategoryPageLoading) {
-              return Center(
+          BlocBuilder<CategoryCubit, CategoryState>(builder: (context, state) {
+            return state.maybeWhen(
+              orElse: () => Container(),
+              loading: () => Center(
                 child: CircularProgressIndicator(),
-              );
-            } else if (state is CategoryFinishedLoading) {
-              return Center(
+              ),
+              loaded: (categoryModel) => Center(
                 child: Column(
                   children: [
-                    Text(state.recentLocation),
                     Column(
-                      children: state.categoryModel.data
+                      children: categoryModel.data
                           .map(
                             (e) => ListCategory(
                                 func: () {
                                   //ketika di klik akan masuk ke variabel namaCategory
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            Faskes_pagesPage_id(
-                                          id: e.id,
-                                        ),
-                                      ));
+                                  Navigator.pushNamed(context, 'faskes_id',
+                                      arguments: FaskesCategoryArgument(
+                                          e.id.toString(), e.namaKategory));
                                 },
                                 tittle: e.namaKategory),
                           )
@@ -61,12 +51,11 @@ class Category_pagesPage extends StatelessWidget {
                     ),
                   ],
                 ),
-              );
-            } else {
-              return Center(
-                child: Text("Error"),
-              );
-            }
+              ),
+              error: (error) => Center(
+                child: Text(error),
+              ),
+            );
           }),
         ],
       ),

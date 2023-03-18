@@ -1,22 +1,27 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:geolocator_fe/config/service/maps_services.dart';
 import 'package:geolocator_fe/data/model/maps_alamat_model.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 
-import '../../../data/model/coordinate_model.dart';
-import 'maps_pages_state.dart';
+import '../../../../config/service/maps_services.dart';
+import '../../../../data/model/coordinate_model.dart';
 
-class Maps_pagesCubit extends Cubit<Maps_pagesState> {
-  Maps_pagesCubit() : super(MapsStateLoading());
+part 'maps_state.dart';
+part 'maps_cubit.freezed.dart';
+
+class MapsCubit extends Cubit<MapsState> {
+  MapsCubit() : super(MapsState.initial());
+  final MapController mapController = MapController();
+  late CoordinateModel coordinateModel;
+  late LatLng currentPossition;
 
   initial() async {
-    emit(MapsStateLoading());
+    emit(MapsState.loading());
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
 
@@ -24,41 +29,45 @@ class Maps_pagesCubit extends Cubit<Maps_pagesState> {
     var jsonData = jsonDecode(getCoordinate.body);
 
     if (getCoordinate.statusCode == 200) {
+      coordinateModel = CoordinateModel.fromJson(jsonData);
+      currentPossition = LatLng(position.latitude, position.longitude);
       emit(
-        MapsStateFinishedLoading(
-          LatLng(position.latitude, position.longitude),
+        MapsState.loaded(
+          coordinateModel,
+          currentPossition,
+          mapController,
           DetailMaps(latitude: '', longitude: '', namaFaskes: ''),
-          CoordinateModel.fromJson(jsonData),
         ),
       );
     }
   }
 
-  currentPossition() async {
-    var curentState = state as MapsStateFinishedLoading;
-    emit(MapsStateLoading());
+  currentPossitionSet() async {
+    emit(MapsState.loading());
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
+    currentPossition = LatLng(position.latitude, position.longitude);
     emit(
-      MapsStateFinishedLoading(
-        LatLng(position.latitude, position.longitude),
+      MapsState.loaded(
+        coordinateModel,
+        currentPossition,
+        mapController,
         DetailMaps(latitude: '', longitude: '', namaFaskes: ''),
-        curentState.coordinateModel,
       ),
     );
   }
 
   setAlamat(String namaFaskes, String latitude, String longitude) async {
-    var curentState = state as MapsStateFinishedLoading;
     emit(
-      MapsStateFinishedLoading(
-        curentState.currentPossition,
+      MapsState.loaded(
+        coordinateModel,
+        currentPossition,
+        mapController,
         DetailMaps(
           latitude: latitude,
           longitude: longitude,
           namaFaskes: namaFaskes,
         ),
-        curentState.coordinateModel,
       ),
     );
   }
@@ -76,7 +85,6 @@ class Maps_pagesCubit extends Cubit<Maps_pagesState> {
   @override
   Future<void> close() {
     // TODO: implement close
-    debugPrint("close");
     return super.close();
   }
 }

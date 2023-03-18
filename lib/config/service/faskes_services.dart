@@ -17,9 +17,14 @@ class FaskesService {
   }
 
   //get category by id
-  static Future getCategoryById(int id) async {
+  static Future getCategoryById(var id) async {
     try {
-      var dataCategory = await http.get(Uri.parse('${Api.byCategoru}/$id'));
+      var dataCategory = await http.post(Api.byCategoru, body: {
+        'kategory': id,
+      }).timeout(
+        const Duration(seconds: 10),
+        onTimeout: () => http.Response('TimeOut', 500),
+      );
       return dataCategory;
     } catch (e) {
       print(e.toString());
@@ -40,7 +45,7 @@ class FaskesService {
     }
   }
 
-  static Future<http.Response> getFaskesById(int id) async {
+  static Future<http.Response> getFaskesById(var id) async {
     try {
       var detail = await http
           .get(
