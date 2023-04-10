@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'about_pages_cubit.dart';
-import 'about_pages_state.dart';
+class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
 
-class About_pagesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => About_pagesCubit(),
-      child: Builder(builder: (context) => _buildPage(context)),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('About'),
+        centerTitle: false,
+        elevation: 0,
+      ),
+      body: Container(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Text(
+              "Tentang Aplikasi",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Aplikasi untu mencari informasi yang berkaitan dengan kesehatan penerima fasilitas kesehatan penerima BPJS kesehatan, pencarian lokasi faskes yang bekerja sama dengan BPJS Kesehatan dan mengarahkan lokasi langsung ke peta (Google Maps).',
+              style: TextStyle(fontSize: 18),
+            ),
+          ],
+        ),
+      ),
     );
   }
-
-  Widget _buildPage(BuildContext context) {
-    final cubit = BlocProvider.of<About_pagesCubit>(context);
-
-    return Container();
-  }
 }
-
-

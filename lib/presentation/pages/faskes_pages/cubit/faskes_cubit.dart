@@ -15,9 +15,13 @@ class FaskesCubit extends Cubit<FaskesState> {
   initial() async {
     emit(FaskesState.loading());
     final dataFaskes = await FaskesService.getFaskes();
-    print(dataFaskes.body);
-    var jsonData = jsonDecode(dataFaskes.body);
+    if (dataFaskes.statusCode == 200) {
+      print(dataFaskes.body);
+      var jsonData = jsonDecode(dataFaskes.body);
 
-    emit(FaskesState.loaded(FaskesModel.fromJson(jsonData)));
+      emit(FaskesState.loaded(FaskesModel.fromJson(jsonData)));
+    } else {
+      emit(FaskesState.error('Tidak dapat mengambil data'));
+    }
   }
 }

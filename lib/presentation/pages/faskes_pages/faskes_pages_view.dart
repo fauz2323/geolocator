@@ -40,8 +40,8 @@ class Faskes_pagesPage extends StatelessWidget {
                       'detail',
                       arguments: DetailArgument(e.id.toString(), e.namaFaskes),
                     ),
-                    image:
-                        'https://cdn.antaranews.com/cache/800x533/2022/06/21/FOTO-Advent.png',
+                    image: 'https://faskesbpjskebayoranlama.my.id/storage/' +
+                        e.gambar,
                     id: e.id,
                     tittle: e.namaFaskes,
                     alamat: e.alamat,

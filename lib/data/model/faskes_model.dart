@@ -33,8 +33,8 @@ class AllFaske {
   });
 
   int id;
-  int kodeKategori;
-  int kodeUser;
+  String kodeKategori;
+  String kodeUser;
   String namaFaskes;
   String kodeFaskes;
   String alamat;

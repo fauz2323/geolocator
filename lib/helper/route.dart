@@ -13,5 +13,6 @@ class RoutesList {
     'detail': (context) => Detail_pagesPage(),
     'faskes_id': (context) => Faskes_pagesPage_id(),
     'maps': (context) => Maps_pagesPage(),
+    'about': (context) => AboutPage(),
   };
 }

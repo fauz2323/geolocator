@@ -29,7 +29,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'GEOLOCATOR',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+            color: MyColors.grren001,
+            elevation: 0,
+            titleTextStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.w500)),
+      ),
       initialRoute: '/',
       routes: RoutesList.routes,
     );

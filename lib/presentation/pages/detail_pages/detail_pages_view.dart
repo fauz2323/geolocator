@@ -6,9 +6,6 @@ import 'package:geolocator_fe/data/model/detail_argument.dart';
 import 'package:geolocator_fe/presentation/pages/detail_pages/cubit/detail_cubit.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'detail_pages_cubit.dart';
-import 'detail_pages_state.dart';
-
 class Detail_pagesPage extends StatelessWidget {
   Detail_pagesPage({super.key});
 
@@ -46,7 +43,8 @@ class Detail_pagesPage extends StatelessWidget {
                         color: Colors.black,
                         image: DecorationImage(
                             image: NetworkImage(
-                              'https://cdn.antaranews.com/cache/800x533/2022/06/21/FOTO-Advent.png',
+                              'https://faskesbpjskebayoranlama.my.id/storage/' +
+                                  detailFaskesModel.faskes.gambar,
                             ),
                             fit: BoxFit.cover,
                             opacity: 0.5),
@@ -55,7 +53,7 @@ class Detail_pagesPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 30, top: 10),
                       child: Text(
-                        detailFaskesModel.faskes?.namaFaskes ?? '-',
+                        detailFaskesModel.faskes.namaFaskes,
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.w700),
                       ),
@@ -90,7 +88,7 @@ class Detail_pagesPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text("No. Telepon"),
-                          Text(detailFaskesModel.faskes!.telpon.toString()),
+                          Text(detailFaskesModel.faskes.telpon.toString()),
                         ],
                       ),
                     ),
@@ -103,7 +101,7 @@ class Detail_pagesPage extends StatelessWidget {
                       padding:
                           const EdgeInsets.only(left: 30, right: 30, top: 10),
                       child: Text(
-                        detailFaskesModel.faskes?.alamat ?? '-',
+                        detailFaskesModel.faskes.alamat,
                         style: TextStyle(fontSize: 15),
                       ),
                     ),
@@ -119,12 +117,9 @@ class Detail_pagesPage extends StatelessWidget {
                           child: FlutterMap(
                             options: MapOptions(
                               center: LatLng(
+                                double.parse(detailFaskesModel.faskes.latitude),
                                 double.parse(
-                                    detailFaskesModel.faskes?.latitude ??
-                                        "0.0"),
-                                double.parse(
-                                    detailFaskesModel.faskes?.longitude ??
-                                        "0.0"),
+                                    detailFaskesModel.faskes.longitude),
                               ),
                               zoom: 14.2,
                             ),
@@ -140,11 +135,9 @@ class Detail_pagesPage extends StatelessWidget {
                                 Marker(
                                   point: LatLng(
                                     double.parse(
-                                        detailFaskesModel.faskes?.latitude ??
-                                            "0.0"),
+                                        detailFaskesModel.faskes.latitude),
                                     double.parse(
-                                        detailFaskesModel.faskes?.longitude ??
-                                            "0.0"),
+                                        detailFaskesModel.faskes.longitude),
                                   ),
                                   builder: (context) {
                                     return Icon(
@@ -168,8 +161,8 @@ class Detail_pagesPage extends StatelessWidget {
                         child: ElevatedButton(
                           onPressed: () {
                             context.read<DetailCubit>().openMaps(
-                                detailFaskesModel.faskes?.latitude ?? '0',
-                                detailFaskesModel.faskes?.longitude ?? '0');
+                                detailFaskesModel.faskes.latitude,
+                                detailFaskesModel.faskes.longitude);
                           },
                           child: Text('Lihat Peta'),
                         ),

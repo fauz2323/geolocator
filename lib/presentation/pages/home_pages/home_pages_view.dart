@@ -74,7 +74,7 @@ class Home_pagesPage extends StatelessWidget {
                           icon: Icons.map_sharp,
                         ),
                         ItemListHome(
-                          func: () {},
+                          func: () => Navigator.pushNamed(context, 'about'),
                           tittle: "Tentang Aplikasi",
                           icon: Icons.tips_and_updates_sharp,
                         ),

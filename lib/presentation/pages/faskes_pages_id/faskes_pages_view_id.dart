@@ -37,20 +37,21 @@ class Faskes_pagesPage_id extends StatelessWidget {
             child: Column(
               children: [
                 Column(
-                  children: faskesModel.dataFaskes!
+                  children: faskesModel.dataFaskes
                       .map(
                         (e) => ListFaskes(
                             func: () {
                               //ketika di klik akan masuk ke variabel namaCategory
                               Navigator.pushNamed(context, 'detail',
                                   arguments: DetailArgument(
-                                      e!.id.toString(), e.namaFaskes!));
+                                      e.id.toString(), e.namaFaskes));
                             },
                             image:
-                                'https://cdn.antaranews.com/cache/800x533/2022/06/21/FOTO-Advent.png',
-                            id: e?.id ?? 0,
-                            tittle: e?.namaFaskes ?? '',
-                            alamat: e?.alamat ?? ''),
+                                'https://faskesbpjskebayoranlama.my.id/storage/' +
+                                    e.gambar,
+                            id: e.id,
+                            tittle: e.namaFaskes,
+                            alamat: e.alamat),
                       )
                       .toList(),
                 ),

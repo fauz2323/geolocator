@@ -1,9 +1,9 @@
 class DetailFaskesModel {
   DetailFaskesModel({
-    this.faskes,
+    required this.faskes,
   });
 
-  Faskes? faskes;
+  Faskes faskes;
 
   factory DetailFaskesModel.fromJson(Map<String, dynamic> json) =>
       DetailFaskesModel(
@@ -11,40 +11,40 @@ class DetailFaskesModel {
       );
 
   Map<String, dynamic> toJson() => {
-        "faskes": faskes!.toJson(),
+        "faskes": faskes.toJson(),
       };
 }
 
 class Faskes {
   Faskes({
-    this.id,
-    this.kodeKategori,
-    this.kodeUser,
-    this.namaFaskes,
-    this.kodeFaskes,
-    this.alamat,
-    this.telpon,
-    this.latitude,
-    this.longitude,
-    this.verifikasi,
-    this.gambar,
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.kodeKategori,
+    required this.kodeUser,
+    required this.namaFaskes,
+    required this.kodeFaskes,
+    required this.alamat,
+    required this.telpon,
+    required this.latitude,
+    required this.longitude,
+    required this.verifikasi,
+    required this.gambar,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
-  int? id;
-  int? kodeKategori;
-  int? kodeUser;
-  String? namaFaskes;
-  String? kodeFaskes;
-  String? alamat;
-  String? telpon;
-  String? latitude;
-  String? longitude;
-  String? verifikasi;
-  String? gambar;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  int id;
+  String kodeKategori;
+  String kodeUser;
+  String namaFaskes;
+  String kodeFaskes;
+  String alamat;
+  String telpon;
+  String latitude;
+  String longitude;
+  String verifikasi;
+  String gambar;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   factory Faskes.fromJson(Map<String, dynamic> json) => Faskes(
         id: json["id"],
@@ -74,7 +74,7 @@ class Faskes {
         "longitude": longitude,
         "verifikasi": verifikasi,
         "gambar": gambar,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
       };
 }

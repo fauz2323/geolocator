@@ -1,55 +1,51 @@
 class FaskesCategoryModel {
   FaskesCategoryModel({
-    this.dataFaskes,
+    required this.dataFaskes,
   });
 
-  List<DataFaske?>? dataFaskes;
+  List<DataFaske> dataFaskes;
 
   factory FaskesCategoryModel.fromJson(Map<String, dynamic> json) =>
       FaskesCategoryModel(
-        dataFaskes: json["dataFaskes"] == null
-            ? []
-            : List<DataFaske?>.from(
-                json["dataFaskes"]!.map((x) => DataFaske.fromJson(x))),
+        dataFaskes: List<DataFaske>.from(
+            json["dataFaskes"].map((x) => DataFaske.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "dataFaskes": dataFaskes == null
-            ? []
-            : List<dynamic>.from(dataFaskes!.map((x) => x!.toJson())),
+        "dataFaskes": List<dynamic>.from(dataFaskes.map((x) => x.toJson())),
       };
 }
 
 class DataFaske {
   DataFaske({
-    this.id,
-    this.kodeKategori,
-    this.kodeUser,
-    this.namaFaskes,
-    this.kodeFaskes,
-    this.alamat,
-    this.telpon,
-    this.latitude,
-    this.longitude,
-    this.verifikasi,
-    this.gambar,
-    this.createdAt,
-    this.updatedAt,
+    required this.id,
+    required this.kodeKategori,
+    required this.kodeUser,
+    required this.namaFaskes,
+    required this.kodeFaskes,
+    required this.alamat,
+    required this.telpon,
+    required this.latitude,
+    required this.longitude,
+    required this.verifikasi,
+    required this.gambar,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
-  int? id;
-  int? kodeKategori;
-  int? kodeUser;
-  String? namaFaskes;
-  String? kodeFaskes;
-  String? alamat;
-  String? telpon;
-  String? latitude;
-  String? longitude;
-  String? verifikasi;
-  String? gambar;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  int id;
+  String kodeKategori;
+  String kodeUser;
+  String namaFaskes;
+  String kodeFaskes;
+  String alamat;
+  String telpon;
+  String latitude;
+  String longitude;
+  String verifikasi;
+  String gambar;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   factory DataFaske.fromJson(Map<String, dynamic> json) => DataFaske(
         id: json["id"],
@@ -79,7 +75,7 @@ class DataFaske {
         "longitude": longitude,
         "verifikasi": verifikasi,
         "gambar": gambar,
-        "created_at": createdAt?.toIso8601String(),
-        "updated_at": updatedAt?.toIso8601String(),
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
       };
 }
