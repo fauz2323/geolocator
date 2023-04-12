@@ -24,6 +24,11 @@ class AboutPage extends StatelessWidget {
               'Aplikasi untu mencari informasi yang berkaitan dengan kesehatan penerima fasilitas kesehatan penerima BPJS kesehatan, pencarian lokasi faskes yang bekerja sama dengan BPJS Kesehatan dan mengarahkan lokasi langsung ke peta (Google Maps).',
               style: TextStyle(fontSize: 18),
             ),
+            SizedBox(height: 20),
+            Text(
+              'Aplikasi Dibuat oleh : Athiya Faradila - 181011400970 - Universitas Pamulang',
+              style: TextStyle(fontSize: 18),
+            ),
           ],
         ),
       ),
