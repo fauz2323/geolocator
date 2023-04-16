@@ -60,7 +60,7 @@ class Home_pagesPage extends StatelessWidget {
                       children: [
                         ItemListHome(
                           func: () => Navigator.pushNamed(context, 'faskes'),
-                          tittle: "Fasilitasn Kesehatan",
+                          tittle: "Fasilitas Kesehatan",
                           icon: Icons.local_hospital_outlined,
                         ),
                         ItemListHome(

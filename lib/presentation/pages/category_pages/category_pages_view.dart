@@ -21,7 +21,7 @@ class Category_pagesPage extends StatelessWidget {
   Widget _buildPage(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Categori Faskes"),
+        title: Text("Kategori Faskes"),
         elevation: 0,
       ),
       body: Column(
