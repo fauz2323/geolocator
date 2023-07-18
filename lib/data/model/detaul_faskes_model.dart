@@ -1,22 +1,22 @@
-class FaskesModel {
-  FaskesModel({
-    required this.allFaskes,
+class FaskesDetailModel {
+  FaskesDetailModel({
+    required this.faskes,
   });
 
-  List<AllFaske> allFaskes;
+  Faskes faskes;
 
-  factory FaskesModel.fromJson(Map<String, dynamic> json) => FaskesModel(
-        allFaskes: List<AllFaske>.from(
-            json["allFaskes"].map((x) => AllFaske.fromJson(x))),
+  factory FaskesDetailModel.fromJson(Map<String, dynamic> json) =>
+      FaskesDetailModel(
+        faskes: Faskes.fromJson(json["faskes"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "allFaskes": List<dynamic>.from(allFaskes.map((x) => x.toJson())),
+        "faskes": faskes.toJson(),
       };
 }
 
-class AllFaske {
-  AllFaske({
+class Faskes {
+  Faskes({
     required this.id,
     required this.kodeKategori,
     required this.kodeUser,
@@ -46,7 +46,7 @@ class AllFaske {
   DateTime createdAt;
   DateTime updatedAt;
 
-  factory AllFaske.fromJson(Map<String, dynamic> json) => AllFaske(
+  factory Faskes.fromJson(Map<String, dynamic> json) => Faskes(
         id: json["id"],
         kodeKategori: json["kode_kategori"],
         kodeUser: json["kode_user"],

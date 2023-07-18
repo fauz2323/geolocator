@@ -53,9 +53,6 @@ class Category_pagesPage extends StatelessWidget {
                             (e) => ListCategory(
                                 func: () {
                                   //ketika di klik akan masuk ke variabel namaCategory
-                                  context
-                                      .read<CategoryPageCubit>()
-                                      .increment(e.kodeKategori);
                                 },
                                 tittle: e.namaKategory),
                           )

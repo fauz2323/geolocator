@@ -15,24 +15,11 @@ class CategoryPageCubit extends Cubit<CategoryPageState> {
   CategoryPageCubit() : super(CategoryPageInitial());
 
   initial() async {
-    try {
-      emit(CategoryPageLoading());
-      final getDataCategory = await FaskesService.getCategory();
-      print(getDataCategory.body);
-      var jsonData = jsonDecode(getDataCategory.body);
-      emit(CategoryFinishedLoading(CategoryModel.fromJson(jsonData)));
-    } on SocketException catch (_) {
-      emit(CategoryPageError());
-    } catch (e) {
-      emit(CategoryPageError());
-    }
-  }
-
-  increment(String category) {
-    //mau update si number
-    //number++
-    // emit(CategoryPageLoading());
-    emit(CategoryName(namaCategory = category));
+    emit(CategoryPageLoading());
+    final getDataCategory = await FaskesService.getCategory();
+    print(getDataCategory.body);
+    var jsonData = jsonDecode(getDataCategory.body);
+    emit(CategoryFinishedLoading(CategoryModel.fromJson(jsonData)));
   }
 
   @override

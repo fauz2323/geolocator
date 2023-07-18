@@ -40,7 +40,8 @@ class Faskes_pagesPage extends StatelessWidget {
                           ),
                         ),
                         image:
-                            'https://cdn.antaranews.com/cache/800x533/2022/06/21/FOTO-Advent.png',
+                            'https://faskesbpjskebayoranlama.my.id/storage/' +
+                                e.gambar,
                         id: e.id,
                         tittle: e.namaFaskes,
                         alamat: e.alamat,
