@@ -33,128 +33,172 @@ class Detail_pagesPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: width(context),
-                      height: height(context) * 35 / 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(50),
-                        ),
-                        color: Colors.black,
-                        image: DecorationImage(
-                            image: NetworkImage(
-                              'https://faskesbpjskebayoranlama.my.id/storage/' +
-                                  detailFaskesModel.faskes.gambar,
-                            ),
-                            fit: BoxFit.cover,
-                            opacity: 0.5),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30, top: 10),
-                      child: Text(
-                        detailFaskesModel.faskes.namaFaskes,
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    Divider(
-                      color: Colors.black,
-                      height: 20,
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 30, right: 30, top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Expanded(
+                      child: ListView(
+                        physics: BouncingScrollPhysics(),
                         children: [
-                          SizedBox(
-                            child: Text("Kota : Kebayoran Lama"),
-                            width: width(context) * 45 / 100,
-                          ),
-                          VerticalDivider(
-                            color: Colors.black,
-                          ),
-                          SizedBox(
-                            child: Text("Provinsi : Jakarta"),
-                            width: width(context) * 30 / 100,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30, top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("No. Telepon"),
-                          Text(detailFaskesModel.faskes.telpon.toString()),
-                        ],
-                      ),
-                    ),
-                    Divider(
-                      color: Colors.black,
-                      height: 20,
-                    ),
-                    Center(child: Text('Alamat Lengkap :')),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 30, right: 30, top: 10),
-                      child: Text(
-                        detailFaskesModel.faskes.alamat,
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                    Center(
-                      child: Container(
-                        width: width(context) * 90 / 100,
-                        height: height(context) * 30 / 100,
-                        margin: EdgeInsets.only(top: 20),
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                        ),
-                        child: Center(
-                          child: FlutterMap(
-                            options: MapOptions(
-                              center: LatLng(
-                                double.parse(detailFaskesModel.faskes.latitude),
-                                double.parse(
-                                    detailFaskesModel.faskes.longitude),
+                          Container(
+                            width: width(context),
+                            height: height(context) * 35 / 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(50),
                               ),
-                              zoom: 14.2,
-                            ),
-                            mapController: mapController,
-                            children: [
-                              TileLayer(
-                                urlTemplate:
-                                    "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                                userAgentPackageName:
-                                    'dev.fleaflet.flutter_map.example',
-                              ),
-                              MarkerLayer(markers: [
-                                Marker(
-                                  point: LatLng(
-                                    double.parse(
-                                        detailFaskesModel.faskes.latitude),
-                                    double.parse(
-                                        detailFaskesModel.faskes.longitude),
+                              color: Colors.black,
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                    'https://faskesbpjskebayoranlama.my.id/storage/' +
+                                        detailFaskesModel.faskes.gambar,
                                   ),
-                                  builder: (context) {
-                                    return Icon(
-                                      Icons.location_on,
-                                      color: Colors.blue,
-                                    );
-                                  },
-                                ),
-                              ]),
-                            ],
+                                  fit: BoxFit.cover,
+                                  opacity: 0.5),
+                            ),
                           ),
-                        ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30, top: 10),
+                            child: Text(
+                              detailFaskesModel.faskes.namaFaskes,
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          Divider(
+                            color: Colors.black,
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  child: Text("Kota : Kebayoran Lama"),
+                                  width: width(context) * 45 / 100,
+                                ),
+                                VerticalDivider(
+                                  color: Colors.black,
+                                ),
+                                SizedBox(
+                                  child: Text("Provinsi : Jakarta"),
+                                  width: width(context) * 30 / 100,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsets.only(left: 30, right: 30, top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("No. Telepon"),
+                                Text(
+                                    detailFaskesModel.faskes.telpon.toString()),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  child: Text("Ambulance : " +
+                                      detailFaskesModel.faskes.ambulance),
+                                  width: width(context) * 45 / 100,
+                                ),
+                                VerticalDivider(
+                                  color: Colors.black,
+                                ),
+                                Container()
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            color: Colors.black,
+                            height: 20,
+                          ),
+                          Center(child: Text('Alamat Lengkap :')),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 10),
+                            child: Text(
+                              detailFaskesModel.faskes.alamat,
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                          Divider(
+                            color: Colors.black,
+                            height: 20,
+                          ),
+                          Center(
+                              child: Text('Deskripsi Fasilitas Kesehatan :')),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 30, right: 30, top: 10),
+                            child: Text(
+                              detailFaskesModel.faskes.info,
+                              style: TextStyle(fontSize: 15),
+                            ),
+                          ),
+                          Center(
+                            child: Container(
+                              width: width(context) * 90 / 100,
+                              height: height(context) * 30 / 100,
+                              margin: EdgeInsets.only(top: 20),
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                              ),
+                              child: Center(
+                                child: FlutterMap(
+                                  options: MapOptions(
+                                    center: LatLng(
+                                      double.parse(
+                                          detailFaskesModel.faskes.latitude),
+                                      double.parse(
+                                          detailFaskesModel.faskes.longitude),
+                                    ),
+                                    zoom: 14.2,
+                                  ),
+                                  mapController: mapController,
+                                  children: [
+                                    TileLayer(
+                                      urlTemplate:
+                                          "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                                      userAgentPackageName:
+                                          'dev.fleaflet.flutter_map.example',
+                                    ),
+                                    MarkerLayer(markers: [
+                                      Marker(
+                                        point: LatLng(
+                                          double.parse(detailFaskesModel
+                                              .faskes.latitude),
+                                          double.parse(detailFaskesModel
+                                              .faskes.longitude),
+                                        ),
+                                        builder: (context) {
+                                          return Icon(
+                                            Icons.location_on,
+                                            color: Colors.blue,
+                                          );
+                                        },
+                                      ),
+                                    ]),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
+                    ),
+                    SizedBox(
+                      height: 10,
                     ),
                     //expanded button
-                    Expanded(
-                        child: Center(
+                    Center(
                       child: SizedBox(
                         height: 40,
                         width: width(context) * 90 / 100,
@@ -167,7 +211,7 @@ class Detail_pagesPage extends StatelessWidget {
                           child: Text('Lihat Peta'),
                         ),
                       ),
-                    ))
+                    )
                   ],
                 ),
                 SafeArea(

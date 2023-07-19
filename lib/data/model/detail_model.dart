@@ -28,6 +28,8 @@ class Faskes {
     required this.longitude,
     required this.verifikasi,
     required this.gambar,
+    required this.info,
+    required this.ambulance,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -43,6 +45,8 @@ class Faskes {
   String longitude;
   String verifikasi;
   String gambar;
+  String info;
+  String ambulance;
   DateTime createdAt;
   DateTime updatedAt;
 
@@ -58,6 +62,8 @@ class Faskes {
         longitude: json["longitude"],
         verifikasi: json["verifikasi"],
         gambar: json["gambar"],
+        info: json["info"],
+        ambulance: json["ambulance"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );
